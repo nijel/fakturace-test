@@ -1,0 +1,96 @@
+\documentclass[a4paper]{letter}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[pdftex,
+            pdfauthor={Michal Cihar},
+            pdfsubject={\VAR{shortitem|escape_tex}},
+            pdftitle={Invoice \VAR{invoiceid|escape_tex}}]{hyperref}
+
+\usepackage[top=1.25in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{booktabs}
+
+\renewcommand*\rmdefault{cmss}
+
+\pagenumbering{gobble}
+
+\begin{document}
+
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lr}
+\textbf{\Large Invoice No. \VAR{invoiceid|escape_tex}} & Prague, \VAR{date|escape_tex} \\
+\end{tabular*}
+
+\vfill
+
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lll}
+& \textbf{Issued by} & \textbf{Invoice to} \\
+&&\\
+Name & Michal Čihař & \VAR{name|escape_tex} \\
+Address & Zdiměřická 1439/8 & \VAR{address|escape_tex}\\
+& 149 00 Praha 4 & \VAR{city|escape_tex}\\
+& Czech Republic & \VAR{country|escape_tex} \\
+&&\\
+Email & michal@cihar.com & \\
+Phone & +420 777 046 536 & \\
+&&\\
+Reg (IČ) & 04705904 & \VAR{tax_reg|escape_tex} \\
+VAT ID (DIČ) & CZ8003280318 & \VAR{vat_reg|escape_tex} \\
+\end{tabular*}
+
+\vfill
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}p{7cm}rrr}
+\toprule
+\textbf{Description} & \textbf{Quantity} & \textbf{Rate} & \textbf{Total} \\
+\midrule
+\VAR{rows}
+\bottomrule
+\end{tabular*}
+
+\begin{flushright}
+\begin{tabular}{lr}
+\BLOCK{ if vat != '0' }
+\textbf{Total excluding VAT} & \VAR{total|escape_tex} \VAR{currency|escape_tex}\\
+\textbf{VAT \VAR{vat|escape_tex} \%} & \VAR{total_vat|escape_tex} \VAR{currency|escape_tex}\\
+\textbf{Total including VAT} & \VAR{total_sum|escape_tex} \VAR{currency|escape_tex}\\
+\BLOCK{ else }
+\textbf{Grand total} & \VAR{total|escape_tex} \VAR{currency|escape_tex}\\
+\BLOCK{ endif }
+\end{tabular}
+\end{flushright}
+
+\vfill
+
+\begin{tabular}{ll}
+\textbf{Currency} & \VAR{currency|escape_tex}\VAR{currency_note|escape_tex} \\
+\textbf{Invoice date} & \VAR{date|escape_tex} \\
+\textbf{Due date} & \VAR{due|escape_tex} \\
+\BLOCK{ if payment_method }
+\textbf{Payment type} & \VAR{payment_method|escape_tex} \\
+\BLOCK{ else }
+\textbf{Payment type} & Bank transfer \\
+\textbf{} &  \\
+\textbf{Issuing bank} & \VAR{bank|escape_tex} \\
+\textbf{Account holder} & Michal Čihař \\
+\textbf{Account number} & \VAR{account|escape_tex} \\
+\textbf{SWIFT code} & \VAR{swift|escape_tex} \\
+\textbf{IBAN} & \VAR{iban|escape_tex} \\
+\textbf{Reference} & \VAR{invoiceid|escape_tex} \\
+\BLOCK{ endif }
+\end{tabular}
+
+\vfill
+\vfill
+\vfill
+\vfill
+
+\begin{tabular}{p{\linewidth}}
+{\small \VAR{note|escape_tex}}\\
+\\
+
+\BLOCK{ if vat == '0' }
+{\small \VAR{vat_notice|escape_tex} }\\
+\BLOCK{ endif }
+\end{tabular}
+
+\end{document}
