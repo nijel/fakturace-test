@@ -5,7 +5,7 @@
 \usepackage[pdftex,
             pdfauthor={Michal Cihar},
             pdfsubject={\VAR{shortitem|escape_tex}},
-            pdftitle={Invoice \VAR{invoiceid|escape_tex}}]{hyperref}
+            pdftitle={Proforma Invoice \VAR{invoiceid|escape_tex}}]{hyperref}
 
 \usepackage[top=1.25in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
 
@@ -18,7 +18,7 @@
 \begin{document}
 
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lr}
-\textbf{\Large Invoice No. \VAR{invoiceid|escape_tex}} & Prague, \VAR{date|escape_tex} \\
+\textbf{\Large Proforma Invoice No. \VAR{invoiceid|escape_tex}} & Prague, \VAR{date|escape_tex} \\
 \end{tabular*}
 
 \vfill
@@ -78,11 +78,7 @@ VAT ID (DIČ) & CZ8003280318 & \VAR{vat_reg|escape_tex} \\
 \textbf{Account number} & \VAR{account|escape_tex} \\
 \textbf{SWIFT code} & \VAR{swift|escape_tex} \\
 \textbf{IBAN} & \VAR{iban|escape_tex} \\
-\BLOCK{ if payment_id }
-\textbf{Reference} & \VAR{payment_id|escape_tex} \\
-\BLOCK{ else }
 \textbf{Reference} & \VAR{invoiceid|escape_tex} \\
-\BLOCK{ endif }
 \BLOCK{ endif }
 \end{tabular}
 
@@ -101,3 +97,4 @@ VAT ID (DIČ) & CZ8003280318 & \VAR{vat_reg|escape_tex} \\
 \end{tabular}
 
 \end{document}
+
