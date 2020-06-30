@@ -4,7 +4,7 @@
 
 \usepackage[pdfauthor={Michal Cihar},
             pdfsubject={\VAR{shortitem|escape_tex}},
-            pdftitle={Proforma Invoice \VAR{invoiceid|escape_tex}}]{hyperref}
+            pdftitle={Pro Forma Invoice \VAR{invoiceid|escape_tex}}]{hyperref}
 
 \usepackage[top=1.25in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
 
@@ -18,7 +18,7 @@
 \begin{document}
 
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lr}
-\textbf{\Large Proforma Invoice No. \VAR{invoiceid|escape_tex}} & Prague, \VAR{date|escape_tex} \\
+\textbf{\Large Pro Forma Invoice No. \VAR{invoiceid|escape_tex}} & Prague, \VAR{date|escape_tex} \\
 \end{tabular*}
 
 \vfill
@@ -29,7 +29,7 @@
 Name & Michal Čihař & \VAR{name|escape_tex} \\
 Address & Zdiměřická 1439/8 & \VAR{address|escape_tex}\\
 & 149 00 Praha 4 & \VAR{city|escape_tex}\\
-& Czech Republic & \VAR{country|escape_tex} \\
+& Czechia & \VAR{country|escape_tex} \\
 &&\\
 Email & michal@cihar.com & \\
 Phone & +420 777 046 536 & \\
@@ -97,4 +97,3 @@ VAT ID (DIČ) & CZ8003280318 & \VAR{vat_reg|escape_tex} \\
 \end{tabular}
 
 \end{document}
-
